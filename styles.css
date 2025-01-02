@@ -7,7 +7,6 @@ html, body {
   height: 100vh;
   display: grid;
   place-items: center;
-  place-content: center;
 }
 
 p {
@@ -27,6 +26,55 @@ p {
   filter: drop-shadow(2px 2px 5px #ffffffaa);
 }
 
+.name-tag {  
+  background-color: #ffffff30;
+  margin: .5em;
+  border-radius: 1.5em;
+  padding: 1em;
+  color: rgb(107, 7, 24);
+  font-size: 1.2em;
+  display: grid;
+  box-shadow: 2px 2px 5px #00000080;
+  filter: drop-shadow(2px 2px 5px #ffffffaa);
+  animation: throb 1s infinite;
+  text-align: center;
+}
+
+#data-view {
+  display: grid;
+  justify-items: center;
+  gap: .5em;
+}
+
+.back {
+  background-color: #47051b;
+  color: white;
+  border: none;
+  padding: .25em 1em;
+  border-radius: 1em;
+  cursor: pointer;
+  box-shadow: 0px 0px 3px #ffffff80;
+  margin: .5em;
+}
+
+.back h1 {
+  margin: 0;
+  text-align: center;
+}
+
+.wrapper {
+  width: calc(100vw - 4em);
+
+  background-color: #ffffff30;
+  margin: .5em;
+  border-radius: 1.5em;
+  padding: 1em;
+  color: rgb(107, 7, 24);
+  font-size: 1.2em;
+  box-shadow: 2px 2px 5px #00000080;
+  filter: drop-shadow(2px 2px 5px #ffffffaa);
+}
+
 button[type="submit"] {
   background-color: #47051b;
   text-transform: uppercase;
@@ -41,12 +89,12 @@ button[type="submit"] {
 
 .bg-wrapper {
   position: absolute;
-  height: 100vh;
+  height: max-content;
   width: 100vw;
   top: 0;
   left: 0;
-  overflow: hidden;
   pointer-events: none;
+  overflow: hidden;  
 }
 
 .bg-splash {
@@ -69,6 +117,7 @@ button[type="submit"] {
   left: 0;
   z-index: -10;
   animation: scroll-up-inf 30s ease-in-out infinite;
+  overflow: show;
 }
 
 .bg-hearts {
@@ -101,6 +150,22 @@ button[type="submit"] {
   100% {
     transform: scale(.8);
     left:20vw;
+  }
+}
+
+
+@keyframes throb {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 

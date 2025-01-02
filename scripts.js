@@ -4,6 +4,46 @@ const FORM_ID = 'galentines-2025';
 const SERVER_URL = 'https://api.swampsofdouglas.mywire.org/friend-forms/';
 const LOCAL_SERVER_URL = 'https://localhost:7039/friend-forms/';
 
+class Form {
+  /**
+   * 
+   * @param {string} formId 
+   * @param {string} submitter 
+   * @param {FormData} data 
+   */
+  constructor(formId, submitter, data){
+    this.formId = formId;
+    this.submitter = submitter;
+    this.data = data == null ? new FormData() : JSON.parse(data);
+  }
+
+  load(elementId, value){
+    console.log(elementId, value);
+    switch(elementId){
+      case 'input-readable-1':
+        console.log('readable1');
+        this.data.readable1 = value;
+        break;
+      case 'input-readable-2':
+        this.data.readable2 = value;
+        break;
+      case 'input-readable-3':
+        this.data.readable3 = value;
+        break;
+      case 'input-munchables':
+        this.data.munchables = value;
+        break;
+    }
+  }
+}
+
+class FormData {
+  readable1;
+  readable2;
+  readable3;
+  munchables;
+}
+
 window.onload = function() {
   for (let i = 0; i < 15; i++) {
     const heart = document.createElement('div');
@@ -20,6 +60,10 @@ window.onload = function() {
     heart.style.zIndex = Math.random() > 0.2 ? 10 : -3;
     document.getElementById('bg-hearts').appendChild(heart);
   }
+
+  if(onPageLoad){
+    onPageLoad();
+  }
 }
 
 async function submitForm(){
@@ -33,23 +77,14 @@ async function submitForm(){
       return;
     }
   
-    const formData = {
-      formId: FORM_ID,    
-      submitter: submitter,
-      data: {}
-    };
+    const formData = new Form(FORM_ID, submitter);
   
     const form = document.getElementsByClassName('form')[0].getElementsByTagName('input');
   
     for (let i = 0; i < form.length; i++) {
-      if(form[i].id == inputNameId) continue;
-      formData.data[form[i].id] = form[i].value;
+      formData.load(form[i].id, form[i].value);
     }
-    
-    console.log(formData);
-  
-    console.log(JSON.stringify(formData));
-  
+      
     // send data to server 
     fetch(SERVER_URL + FORM_ID, {
       method: 'POST',
@@ -58,7 +93,8 @@ async function submitForm(){
       },
       body: JSON.stringify(formData).toString(),
     });
-    alert('Submitted successfully!  Data views coming soon!');
+    alert('Submitted successfully!');
+    window.location.href = 'index.html';
   } finally{
     document.getElementsByTagName('button')[0].disabled = false;
   }

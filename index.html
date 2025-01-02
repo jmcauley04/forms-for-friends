@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700"
       rel="stylesheet"
     />
+    <script src="index.js" defer></script>
     <script src="scripts.js" defer></script>
   </head>
   <body>
@@ -21,31 +22,7 @@
       <div id='bg-hearts' class="bg-hearts">
       </div>
     </div>
-    <div class="bg-form">
-      <div class="form">
-        <p style="font-size: 1.4em;">hey Boo ❤,</p>
-        <div style="display: grid;">
-          <h3 style="margin: .2em 0;">name</h3>
-          <input id="input-name" />
-        </div>
-        <p>Tell me what you're into.... for no particular reason.</p>
-       
-        <div style="position: relative; display: grid;">
-          <h3>readables</h3>
-          <image id="hugs-n-kisses" src="assets/hugs-and-kisses_transparent.png" />
-        </div>
-
-        <div class="readables">
-          <input id="input-readable-1" type="text" />
-          <input id="input-readable-2"  type="text" />
-          <input id="input-readable-3"  type="text" />
-        </div>
-        <h3>munchables</h3>
-        <input id="input-munchables" type="text" />
-
-        <button type="submit" onclick="submitForm()" style="margin-top: 1em;">x o x o !</button>
-
-      </div>
+    <div id="data-view" style="display: grid;">      
     </div>
   </body>
 </html>
